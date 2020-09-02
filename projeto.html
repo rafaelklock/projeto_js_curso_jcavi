@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+    <title>Emissão de Orçamento</title>
+    <style> 
+        table, th, td { 
+            border: 0px solid black; 
+            border-collapse: collapse; 
+        }
+        </style> 
+
+    <meta charset="utf-8">
+    <title>JSON, callback & AJAX</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+
+<h1>Emissão de Orçamento</h1>
+<input type="button" onclick="limparCampos()" value="Limpar campos" id="botaoLimparCampos">
+<hr>
+
+<h2>Cliente</h2>
+
+<table width="70%">
+    <tr>
+        <td width="50%">
+            Nome<br>
+            <input type="text" maxlength="50" size="50" id="nome">
+        </td>
+        <td width="50%">
+            CPF<br>
+            <input type="text" maxlength="11" size="11" id="cpf">
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td width="50%">
+            Telefone<br>
+            <input type="text" maxlength="20" size="20" id="telefone">
+        </td>
+        <td width="50%">
+            e-mail<br>
+            <input type="text" maxlength="20" size="20" id="email">
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td width="50%">
+            Endereço<br>
+            <input type="text" maxlength="50" size="50" id="endereco">
+        </td>
+        <td width="50%">
+            CEP<br>
+            <input type="text" maxlength="8" size="8" id="cep">
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td width="50%">
+            Cidade<br>
+            <select id="select_cidade">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td width="50%">
+            UF<br>
+            <select id="select_uf">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<h2>Produtos</h2>
+
+File name: <span id="texto_file_name"></span><br>
+Carregar lista de produtos: <input type="file" id="id_file">
+
+<br><br>
+
+<table width="60%">
+    <tr>
+        <td width="30%">Produto</td>
+        <td width="20%">Código</td>
+        <td width="10%">Quantidade</td>
+        <td width="20%">Valor unitário</td>
+        <td width="20%">Valor total</td>
+    </tr>
+    <tr>
+        <td>
+            <select id="select_produto_1">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td>
+            <span id="codigo_produto_1">-</span>
+        </td>
+        <td>
+            <input type="text" maxlength="3" size="3" id="quantidade_produto_1">
+        </td>
+        <td>
+            <span id="valor_unitario_produto_1">-</span>
+        </td>
+        <td>
+            <span id="valor_total_produto_1">-</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select id="select_produto_2">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td>
+            <span id="codigo_produto_2">-</span>
+        </td>
+        <td>
+            <input type="text" maxlength="3" size="3" id="quantidade_produto_2">
+        </td>
+        <td>
+            <span id="valor_unitario_produto_2">-</span>
+        </td>
+        <td>
+            <span id="valor_total_produto_2">-</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select id="select_produto_3">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td>
+            <span id="codigo_produto_3">-</span>
+        </td>
+        <td>
+            <input type="text" maxlength="3" size="3" id="quantidade_produto_3">
+        </td>
+        <td>
+            <span id="valor_unitario_produto_3">-</span>
+        </td>
+        <td>
+            <span id="valor_total_produto_3">-</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select id="select_produto_4">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td>
+            <span id="codigo_produto_4">-</span>
+        </td>
+        <td>
+            <input type="text" maxlength="3" size="3" id="quantidade_produto_4">
+        </td>
+        <td>
+            <span id="valor_unitario_produto_4">-</span>
+        </td>
+        <td>
+            <span id="valor_total_produto_4">-</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <select id="select_produto_5">
+                <option value="">Selecione...</option>
+            </select>
+        </td>
+        <td>
+            <span id="codigo_produto_5">-</span>
+        </td>
+        <td>
+            <input type="text" maxlength="3" size="3" id="quantidade_produto_5">
+        </td>
+        <td>
+            <span id="valor_unitario_produto_5">-</span>
+        </td>
+        <td>
+            <span id="valor_total_produto_5">-</span>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Valor do orçamento:</td>
+        <td>
+            <span id="valor_total_orcamento">-</span>
+        </td>
+    </tr>
+</table>
+
+<hr>
+<input type="button" onclick="window.print()" value="Imprimir orçamento">
+
+<span id="mensagem_data_hora_emissao"></span>
+<br><br>
+<span id="mensagem_json_cliente"></span>
+
+
+</div>
+
+
+<script src="js/functions.js"></script>
+<script>
+
+let botaoLimparCampos = document.getElementById("botaoLimparCampos");
+botaoLimparCampos.addEventListener("click", limparCampos);
+
+let selectUFs = document.getElementById("select_uf");
+selectUFs.addEventListener("change", () => {
+    let selectedItem = document.getElementById("select_uf").value;
+    //alert(`selecionado: ${selectedItem}`);
+    limpaCidades()
+    consultarMunicipios()
+});
+
+let id_file = document.getElementById("id_file");
+id_file.addEventListener("change", exibeProdutos);
+
+
+
+/*****************************************************************************/
+//
+// Geral
+// - Limpar todos os campos quando o usuário clicar no botão "Limpar campos"
+// - Exibir o texto "Orçamento emitido em <data_hora_corrente>" no campo "mensagem_data_hora_emissao"
+// - Exibir no campo "mensagem_json_cliente" um JSON contendo apenas os dados do cliente
+//
+// Seção Cliente
+// - Carregar a lista das UF automaticamente
+// - Carregar a lista de municípios após a seleção da UF
+// - Remover os municípios do select caso o select "UF" vá para "Selecione..."
+//
+// Seção Produtos
+// - Carregar a lista de produtos (arquivo JSON produtos.csv) nos select da coluna "Produto"
+// - Ao selecionar um produto, atribuir o código e o valor unitário na respectiva linha
+// - Calcular automaticamente o valor total e o valor do orçamento na mudança de algum dado
+//
+/*****************************************************************************/
+
+carregarUFs()
+
+</script>
+
+</body>
+</html>
