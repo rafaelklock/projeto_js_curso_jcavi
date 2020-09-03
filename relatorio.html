@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DATATEAM Relatório de coleta</title>
+   
+    <p><strong>DataTeam - Relatório de coleta</strong>
+    </p>
+    <table class="table" id="tabrel">
+        <thead class="thead-dark">
+            <tr class="linehead">
+                <td colspan="4" class="cols">RELATÓRIO DE COLETA</td>
+            </tr>
+            <tr>
+                <th scope="col" class="cols">Tribunal</th>
+                <th scope="col" class="cols">CNJs<br>Coletados</th>
+                <th scope="col" class="cols">Coletas<br>Realizadas</th>
+                <th scope="col" class="cols">Não<br>Encontrados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="line">
+                <td class="tribunal">TJBA</td>
+                <td class="cnj_coletados">7</td>
+                <td class="coletas_realizadas">0</td>
+                <td class="nao_encontrados">4</td>
+            </tr>
+            <tr class="line">
+                <td class="tribunal">TRT3</td>
+                <td class="cnj_coletados">4</td>
+                <td class="coletas_realizadas">3</td>
+                <td class="nao_encontrados">1</td>
+            </tr>
+            <tr class="line">
+                <td class="tribunal">TJSP</td>
+                <td class="cnj_coletados">4</td>
+                <td class="coletas_realizadas">0</td>
+                <td class="nao_encontrados">4</td>
+            </tr>
+       
+
+            <tr class="line">
+                <td>SOMA</td>
+                <td id="soma1"></td>
+                <td id="soma2"></td>
+                <td id="soma3"></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+    <script language="javascript" type="text/javascript">
+
+        var cnj_coletados = document.getElementsByClassName("cnj_coletados")
+        var coletas_realizadas = document.getElementsByClassName("coletas_realizadas")
+        var nao_encontrados = document.getElementsByClassName("nao_encontrados")
+        var sum1 = 0;
+        var sum2 = 0;
+        var sum3 = 0;
+       
+        soma1 = document.getElementById('soma1')
+        soma2 = document.getElementById('soma2')
+        soma3 = document.getElementById('soma3')
+
+        for(var i = 0; i < cnj_coletados.length; i ++) {
+            var num = cnj_coletados[i].textContent
+             sum1 = Number(num) + sum1;           
+        }
+        
+        for(var i = 0; i < coletas_realizadas.length; i ++) {
+            var num = coletas_realizadas[i].textContent
+             sum2 = Number(num) + sum2;           
+        }
+
+        for(var i = 0; i < nao_encontrados.length; i ++) {
+            var num = nao_encontrados[i].textContent
+             sum3 = Number(num) + sum3;           
+        }
+
+        soma1.innerText = sum1;
+        soma2.innerText = sum2;
+        soma3.innerText = sum3;
+
+    
+    </script>
